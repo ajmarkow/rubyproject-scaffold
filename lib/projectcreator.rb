@@ -4,8 +4,15 @@ require('Fileutils')
 
 def make_files(class_array, project_name)
   class_array.each do |class_name|
-    File.write("./#{project_name}/lib/#{class_name}.rb", "class #{class_name}\nend")
-    File.write("./#{project_name}/spec/#{class_name}_spec.rb", "class #{class_name}\nend")
+    File.write("./#{project_name}/lib/#{class_name}.rb", "class #{class_name.capitalize()}\nend")
+    File.write("./#{project_name}/spec/#{class_name}_spec.rb", 
+"require('#{class_name}')
+
+describe ('#{class_name.capitalize()}') do
+  it('does this') do
+    expect(function-name(input)).to(eq())
+  end
+end")
   end
 end
 
@@ -18,6 +25,8 @@ puts"Let's start by entering your project name:"
 puts "                                                   "
 puts"---------------------------------------"
 puts "                                                   "
+prompt = "🢂" 
+puts prompt 
 project_name = gets.chomp
 FileUtils.mkdir(project_name)
 # FileUtils.cd(project_name)
@@ -26,10 +35,16 @@ FileUtils.mkdir("./#{project_name}/spec")
 puts "                                                   "
 puts"---------------------------------------"
 puts "                                                   "
-puts "Great, what classes did you want in your project?"
+puts " Your project name is #{project_name}"
 puts "                                                   "
 puts"---------------------------------------"
 puts "                                                   "
+puts " Great, what classes did you want in your project?"
+puts "                                                   "
+puts"---------------------------------------"
+puts "                                                   "
+prompt = "🢂" 
+puts prompt
 raw_class_names = gets.chomp.split(/[, ]+/)
 puts "                                                   "
 puts"---------------------------------------"
